@@ -1,0 +1,61 @@
+*** getting started Arduino Duemilanove ***
+
+Scaricare e installare il programma editor desktop
+
+Connettere Arduino.
+Molto probabilmente Windows cercherà di configurare il n uovo dispositivo come "FT232R USB UART".
+NON è corretto.
+Andare su "Pannello di controllo --> Strumenti di amministrazione --> Gestione computer --> Gestione dispositivi", cliccare col tasto destro su "FT232R USB UART" e scegliere "aggiorna driver --> cerca il driver nel computer --> scegli manualmente --> Controller USB (Universal Serial Bus) --> Disco driver"
+
+Scegli manulamente i driver nel percorso:
+C:\Program Files\Arduino\drivers\FTDI USB Drivers\ftdibus.inf --> USB Serial Converter
+
+
+A questo punto "USB Serial Converter" compare nell'elenco dei dispositivi.
+Ora bisogna riparare "USB serial Port", clicca col tasto destro, e poi "aggiorna driver --> cerca il driver nel computer --> scegli manualmente --> USB Serial Port --> Disco driver"
+oppure se "USB Serial Port" non compare nell'lenco --> mostra TUTTI i dispositivi --> Disco driver"
+
+Scegli manulamente i driver nel percorso:
+C:\Program Files\Arduino\drivers\FTDI USB Drivers\ftdiport.inf --> USB Serial Port
+
+
+==> Oppure recupera i driver da:
+http://www.ftdichip.com/FTDrivers.htm
+
+
+
+************************************
+ESERCIZI per iniziare:
+
+
+Alcuni esempi li trovate in "File --> Esempi --> Basic" ad esempio scegliete come primo esercizio "Blink".
+Per capire come funziona questo esercizio, e in generale il codice C in Arduino:
+https://www.arduino.cc/en/tutorial/sketch
+
+Oppure usando un led esterno:
+https://www.arduino.cc/en/Tutorial/Sample
+
+In generale tutti gli esempi sono qui:
+https://www.arduino.cc/en/Tutorial/BuiltInExamples
+
+
+
+
+************************************
+Perchè piazzare una resistenza prima del LED?
+The simplest circuit to power an LED is a voltage source with a resistor and an LED in series. Such a resistor is often called a ballast resistor. The ballast resistor is used to limit the current through the LED and to prevent that it burns.
+Some LEDs such as colour changing LEDs, flashing LEDs and 5V LEDs are designed to run off a 5V supply and therefore don't need a resistor. All other standard and bright LEDs will need a current limit resistor. ... For a standard LED the forward voltage will typically be 2V, where as an ultra bright LED will be about 3.5V.
+
+Arduino ha come output una tensione di 5V, e può erogare al massimo 40mA su un pin.
+Ogni LED viene prodotto con una TENSIONE e CORRENTE propria, ad esempio 2V e 15mA (standard LED arancione).
+Le motivazioni ritrovate in rete relative a "occorre inserire un resistore in serie al LED per limitare la corrente altrimenti il LED si brucia" mi paiono inesatte: bisogna limitare la TENSIONE sul LED, e al contempo anche la corrente, in quanto il LED in qualità di diodo può assorbire correnti elevate che lo brucerebbe. Quindi, bisogna inserire una resistenza in serie che porti il valore di corrente prossimo a quello che il LED è in grado di sopportare, limitando al contempo la caduta di tensione sul led stesso.
+
+Per calcolare il valore che deve avere questo resistore:
+http://www.claredot.net/it/sez_Elettronica/resistenza-di-caduta-per-led.php
+
+Oppure, supponendo che il tuo LED lavori a 2V e richieda una corrente max di 20mA, tu magari prevedi 15mA (per sicurezza), ti basta applicare la legge di ohm: R = V/I quindi = (5v-2V)/0.02A (devi rapportare tutto all'unità di misura standard). Ottieni 150 ohm, che è il valore della resistenza da mettere in serie tra il pin di Arduino e l'anodo del led, il cui catodo andrà a massa.
+
+
+
+
+
