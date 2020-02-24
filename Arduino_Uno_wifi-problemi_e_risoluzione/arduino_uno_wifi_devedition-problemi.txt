@@ -1,0 +1,129 @@
+****************************
+Cosa installare innanzitutto?
+Da "Gestore librerie" installare:
+- Uno Wifi Developer edition
+- Uno WiFi Developer edition Serial1
+- Blynk
+- WiFi Link
+
+Gestore schede:
+- esp8266 support
+
+Per prima cosa dovete rendere l'IDE di Arduino compatibile con l'ESP8266, per farlo dovrete andare in "file", "impostazioni" e scrivere il seguente indirizzo a fianco di "URL aggiuntivo per il Gestore schede"
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+
+****************************
+L'UNICA SOLUZIONE E' QUELLA DI AGGIORNARE LA SCHEDA TRAMITE POWER SHELL DI WINDOWS, cioè caricando i firmware aggiornati tramite shell - vedi oltre
+
+Ora non tutti i file .zip che ci sono in questa cartella sono utili. Leggi prima questa mini guida e poi capisci cosa fare.
+****************************
+
+SOLUZIONE?????
+https://community.blynk.cc/t/solved-arduino-org-uno-wifi-board-with-firmware-1-0-0-and-wifilink-h-librairies/15947/40
+
+In realtà lo sketch BlynkSimpleWifiLink.sh c'è già nel percorso delle librerie locali di Arduino, e il contenuto sembra il medesimo.
+Invece il codice per Blynk sembra completamente diverso da quello di esempio "BlynkBlink".
+Provarlo.
+Eventualmente provare gli esempi dati da Blynk, probabilmente sostituendo:
+#include <SPI.h>
+#include <Ethernet.h>
+#include <BlynkSimpleEthernet.h>
+char auth[] = "YourAuthToken";
+
+con:
+#include <SPI.h>
+#include <WiFiLink.h>
+#include <BlynkSimpleWifiLink.h>
+char auth[] = "YourAuthToken";
+char ssid[] = "Your SSID";     //  your network SSID (name)
+char pass[] = "Your Pass";  // your network password
+int status = WL_IDLE_STATUS; 
+
+funzionerà???
+ATTENZIONE!! Esiste già uno sketch di questo tipo caricato tra gli esempi di Arduino!
+Cercare File-->Esempi-->Blynk-->Boards WiFi-->Arduino.org UNO Wifi
+
+Per usarlo bisogna AGGIORNARE IL FIRMWARE USANDO WIFILINK versione >1.0.0
+Ma dove cazzo si trova quest firmware?
+https://github.com/arduino-org/WiFiLink-Firmware/issues/23
+
+Sembra basti seguire questa guida:
+https://github.com/jandrassy/arduino-firmware-wifilink
+
+Ma questi file (da url precedente https://github.com/arduino-org/WiFiLink-Firmware/issues/23) dove cazzo li prende???
+Da QUI!!
+https://github.com/arduino-org/WiFiLink-Firmware/releases
+
+Poi carichi su Arduino IDE lo skect ESPREcovery (penso quello base di UnoWiFi) e come l'ultima volta da PowerShell carichi su il firmware:
+C:\Users\XXXX\Documents\Arduino\tools\ArduinoFirmwareWiFiLink>…\UnoWiFi\tool\bin\esptool-windows -p COM4: -b 9600 write_flash -ff 80m -fm qio -fs 32m 0x000000 C:\Users\XXXX\Documents\Arduino\tools\ArduinoFirmwareWiFiLink\ArduinoFirmwareWiFiLink-UNO_WIFI_DEV_ED-1.0.0.bin 0x300000 C:\Users\XXXX\Documents\Arduino\tools\ArduinoFirmwareWiFiLink\ArduinoFirmwareWiFiLink-WEB_PANEL-1.0.0.bin
+
+Se non dovesse funzionare lo sketch di esempio "Arduino.org UNO Wifi" prova a usare lo sketch riportato qui (sebbene non capisca cosa faccia):
+https://community.blynk.cc/t/solved-arduino-org-uno-wifi-board-with-firmware-1-0-0-and-wifilink-h-librairies/15947/40
+
+****************************
+
+
+****************************
+
+Per far funzionare Arduino Uno WiFi Developer Edition, progetto abbandonato, pare sia meglio installare la libreria UnoWiFiDevEdSerial1.
+
+Seguire la sezione "UNO WiFi with WiFi Link firmware", installando tutti i supporti al modulo esp8266 già incluso sulla board:
+https://github.com/jandrassy/UnoWiFiDevEdSerial1/blob/master/README.md#uno-wifi-with-wifi-link-firmware
+(questo link è citato dal suo autore Juraj qui: https://community.blynk.cc/t/using-the-uno-wifi-serial-1-library-with-blynk/21600/16)
+
+Installare tutto, non so se occorre anche il firmware o meno.
+
+Per usare Blynk, provare questo skect di esempio fornito da jandrassy stesso:
+https://github.com/jandrassy/UnoWiFiDevEdSerial1/blob/master/examples/UnoWiFiBlynk/UnoWiFiBlynk.ino
+
+Non so se sia necessario installare anche questo firmware, ma data la complessità di installazione del firmware, proverei prima senza:
+https://github.com/jandrassy/arduino-firmware-wifilink/blob/master/README.md
+(questa questione del firmaware è citata in questo thread che peraltro continuerei a leggere nel caso ci fossero altri problemi:
+https://forum.arduino.cc/index.php?topic=544636.15
+)
+
+
+
+**** PER CONFIGURARE ARDUINO UNO WIFI VIA WEB ****
+Questo è stato possibile solo quando ho aggiornato il firmware della board. Per aggiornare il firmware:
+https://www.arduino.cc/en/Guide/ArduinoUnoWiFiChangeFw
+(seguire il capitolo "Burn the firmware using EspRecovery". Invece del python esptool.py dovrebbe esserci l'exe. Chiaramente se non hai questi tools li devi scaricare:
+https://github.com/arduino-libraries/UnoWiFi-FirmwareUpdater-Plugin/releases
+poi punti tutti i comandi all'ultima versione cioè UnoWiFi-Updater-ArduinoIDE-Plugin-0.0.2.zip\UnoWiFi\tool\firmwares\20161121
+
+
+A questo punto dovrei avere la mia board operativa e visibile come wifi dal mio pc.
+
+Per la configurazione vera e propria del WiFi, da PC dovrei vedere una connessione che si chiama "Arduino_Uno_WiFi". Mi connetto, via broser vado alla pagina http://192.168.240.1/, et voilà, seguo poi la seguente guida:
+https://www.arduino.cc/en/Guide/ArduinoUnoWiFi
+(vai alla parte "First configuration")
+
+
+**** PER USARE BLYNK ****
+In breve usare Blynk è un casino.
+Seguendo tutte le guide precedenti, può essere utile infine seguire questp thread:
+https://forum.arduino.cc/index.php?topic=627367.0
+
+In cui Juraj (cioè jandrassy) spiega:
+<<
+Any sketch for Uno and esp8266 can be used with the Uno WiFi only replacing SoftwareSerial with UnoWiFiDevEdSerial1
+
+if you see a sketch for Uno with esp8266 on SoftwareSerial with
+#include <SoftwareSeria.h>
+SoftwareSerial esp8266(6, 7);
+
+it will work if you replace this with
+#include <UnoWiFiDevEdSerial1.h>
+#define esp8266 Serial1
+>>
+
+
+######## in realtà pare che lo stesso Blynk dica di sucare con Arduino Uno Wifi + Esp8266:
+http://docs.blynk.cc/#hardware-set-ups-arduino-esp8266-wifi-with-at-commands
+
+Bisognerebbe capire come abilitare le AT commands...
+
+
+
+
