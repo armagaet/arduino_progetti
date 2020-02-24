@@ -1,0 +1,2 @@
+https://win.adrirobot.it/sensori/pir_sensor/pir_sensor_hc-sr501_arduino.htm
+interessante perchè spiega finalmente bene come funziona il sensore!

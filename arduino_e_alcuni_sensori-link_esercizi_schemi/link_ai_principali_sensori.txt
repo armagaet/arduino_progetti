@@ -1,0 +1,7 @@
+i sensori a cui principalmente si farà riferimento sono quelli elencati in questo KIT, comprato da ENAIP:
+
+https://www.pintoelettronica.com/altro-kit-37-sensori-per-arduino.1.2.153.gp.5780.uw
+
+
+Oni sensore è ben spiegato qui:
+https://win.adrirobot.it/sensori/37_in_1/37_In_1_Sensor_Module_Board_Set_Kit_For_Arduino.htm

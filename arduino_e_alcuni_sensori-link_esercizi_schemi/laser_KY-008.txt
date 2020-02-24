@@ -1,0 +1,6 @@
+https://www.youtube.com/watch?v=KX_-MPOJNXY
+
+fotoresistore e laser per creare un sistema di controllo dei passaggi?
+Non è ben spiegato come ma potebbe funzionare, usando i seguenti 2 sensori:
+- KY-008 Laser sensor module
+- KY-018 Photo resistor module

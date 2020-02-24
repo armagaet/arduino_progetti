@@ -1,0 +1,11 @@
+https://win.adrirobot.it/sensori/37_in_1/KY-009-RGB-full-color-LED-SMD-module.htm
+
+nel testo i led RGB vengono accesi/spenti ciclicamente, non vengono cioè controllati dall'esterno.
+
+Per regolare le luci tramite un potenziometro, vedere il video youtube:
+https://youtu.be/CwK35nEOtoE
+
+Sarebbe interessante scegliere il colore della luce:
+A- tramite il valore di radiazione luminosa ottenuto ad esempio tramite una fotoresistenz
+B- tramite un tastierino numerico/telecomando
+C- oppure tramite l'app BLYNK con la dovuta interfaccia

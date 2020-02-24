@@ -1,0 +1,7 @@
+https://win.adrirobot.it/sensori/37_in_1/KY-037_KY-038-Microphone-sound-sensor-module.htm
+
+potrebbe essere usato questo microfono per accendere una sorta di "semaforo" al superamento di determinate soglie di "rumore"
+La differenza tra i 2 microfoni pare essere la sensibilità.
+
+L'altro microfono (meno sensibile) è questo:
+https://win.adrirobot.it/sensori/37_in_1/KY-037_KY-038-Microphone-sound-sensor-module.htm

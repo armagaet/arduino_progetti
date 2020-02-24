@@ -1,0 +1,7 @@
+https://win.adrirobot.it/sensori/37_in_1/KY-019-5V_relay_module.htm
+Ecco a cosa serve il relè!
+Manca il collegamento del relè ad un utilizzatore di corrente alternata di casa.
+
+Prova con:
+A- una lampadina (anche in CC)
+B- uno stereo (??)
