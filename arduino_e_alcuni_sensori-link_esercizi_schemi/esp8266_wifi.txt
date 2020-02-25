@@ -1,0 +1,2 @@
+Prova a vedere questo esercizio per iniziare:
+https://www.ismanettone.it/utilizzare-modulo-esp8266-arduino/

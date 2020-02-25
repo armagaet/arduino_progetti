@@ -1,0 +1,44 @@
+Per scaricare la libreria per questo lettore di schede/token magnetici:
+https://github.com/jackbell16/Arduino-Book-Code/tree/master/Capitolo%2011
+...ma la libreria la puoi anche scaricare dall'IDE di Arduino
+
+
+Per alcuni esercizi e la spiegazione:
+https://www.ismanettone.it/lezione-11-come-utilizzare-rfid-reader-per-carte-magnetiche/
+...io cercherei di riportare i codici abilitati in un array.
+Ma come aggiungere/abilitare in maniera dinamica queste card? Cioè ogni volta dovrei modificare e ricaricare lo sketch su Arduino? Se potessi scrivere sulla scheda una funzione/variabile che poi riconosco in lettura potrebbe essere una soluzione a questo problema...
+
+Questo sembra riportare gli stessi esercizi, ma è meno leggibile:
+https://www.progettiarduino.com/38-arduino-lettore-rfid-reader-e-relegrave.html#
+
+
+***************************
+Una volta installata la libreria MFRC522 proviamo alcuni skect di esempio, ad esempio MFRC522-->DumpInfo, in cui ci vengono mostrati i vari settori di cui è composto la card/token.
+(vedi minuto 2 del video qui sotto:
+https://www.youtube.com/watch?v=uihjXyMuqMY
+
+Per leggere tutto il contenuto del chip della card/token il RFID impiega circa 6 secondi, quindi occorre mantenere la card ferma
+
+***************************
+Ma per SCRIVERE?
+
+https://www.youtube.com/watch?v=uihjXyMuqMY
+All'inizio spiega il funzionamento del lettore.
+Da circa il minuto 5 in poi spiega come scrivere.
+Prima spiega come leggere ma non so in quale modalità...
+Ad ogni modo per scrivere, scrive in un blocco della chiave, il blocco 2, una sequenza di 16 bytes.
+NON SCRIVERE nel blocco 0 altrimenti bruci tutto!
+Secondo me per velocizzare la lettura forse sarebbe meglio scrivere ad esempio nel blocco 62, poichè all'inizio del video sembra spiegare che il lettore legge prima quetsi blocchi e impiega circa 6 secondi per leggere tutti i blocchi fino appunto al blocco 0.
+Dopo aver scritto sul blocco rilanciare lo sketch di esempio DumpInfo per rivedere le informazioni contenute nella card
+
+
+Da qui scarico uno sketch per scrivere, citato nel video di cui sopra:
+https://makecourse.weebly.com/week10segment1.html
+oppure:
+https://create.arduino.cc/editor/LogMaker360/ac6be449-9893-4e30-9ce5-7733cfb8a7ef/preview
+
+Secondo me per scrivere sulla card/token si potrebe aggiungere un pulsante:
+- nel ciclo loop, leggo se il pulsante è premuto oppure no
+- se tengo premuto il pulsante e passo la scheda davanti al lettore RFID, allora il lettore entra in modalità scrittura
+- se non tengo premuto il pulsante, lo sketch legge semplicemente lo UID della card/token, oppure legge il blocco che ho deciso che mi serve per autorizzare/NON autorizzare quella card/token
+Dovrei riuscire a riciclare cioè gli skecth di esempio per creare questa alternativa
