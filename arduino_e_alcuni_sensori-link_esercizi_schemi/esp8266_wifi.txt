@@ -1,3 +1,22 @@
+########################
+SOLUZIONE!!
+- lo sketch che funziona è il "quarta_prova_blynk"
+- lo schema delle connessioni è:
+UNO ------ ESP8266
+3 -- 500ohm -- RX  --> sarebbe neglio 1kohm forse ma non l'ho trovata
+GND -- 2kohm -- RX
+2 ----- TX
+GND ----- GND
+3.3V --- VCC
+3.3V -- 10kohm -- CH_PD
+4 ----- RST --> oppure a GND nel caso si voglia resettare il modulo...ma perchè?
+
+A cosa servano le resistenze non saprei: forse a stabilizzare il segnale?
+Al momento pare funzionare con Blynk. Nel caso, con le resistenze, mi pare di capire si possa collegare anche all'alimentazione a 5V di Arduino (ma forse non cambierebbe nulla).
+
+########################
+
+
 Prova a vedere questo esercizio per iniziare:
 https://www.ismanettone.it/utilizzare-modulo-esp8266-arduino/
 
@@ -62,8 +81,7 @@ https://www.youtube.com/watch?v=M5CYBHzMejo&list=FLOLPERtM-BguI3-11Hoi3yg&index=
 (questo video usa però dei convertitori di tensione...unico motivo per cui può essere utile è che si interfaccia con Blynk: ma direttamente con l'ESP o tramite Arduino?)
 
 https://create.arduino.cc/projecthub/jeffpar0721/add-wifi-to-arduino-uno-663b9e
-
-A quanto apre le RESISTENZE sono importanti per controllare il voltaggio e non bruciare l'ESP.
+A quanto pare le RESISTENZE sono importanti per controllare il voltaggio e non bruciare l'ESP.
 ...
 l'avrò già bruciato??
 
@@ -82,12 +100,12 @@ https://create.arduino.cc/projecthub/adithya-tg/control-arduino-uno-using-esp826
 Questo link è simile al precedente ma aggiunge una guida su come flshare il modulo ESP: se la tua versione è già >= a Sdk1.0.0 v0.22 lascia perdere:
 https://create.arduino.cc/projecthub/nolan-mathews/connect-to-blynk-using-esp8266-as-arduino-uno-wifi-shield-m1-46a453
 
-- si può dialogare con l'ESP tramite Arduino Uno usando altri pin, sfruittando così il codice e la logica di Arduino
+- si può dialogare con l'ESP tramite Arduino Uno usando altri pin, sfruttando così il codice e la logica di Arduino
 
 
 PROVARE a vedere se dopo aver connesso l'ESP viene creata una rete WIFI!
 -->vedi link precedente https://create.arduino.cc/projecthub/jeffpar0721/add-wifi-to-arduino-uno-663b9e
-
+...NO!
 
 
 Alcune note nei commenti degli utenti:
