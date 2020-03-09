@@ -51,3 +51,53 @@ AT+CWMODE=1 permette poi di lanciare il comando AT+CWLAP per cercare le reti dis
 
 --IMPORTANTE i comandi segnalati qui:
 https://www.mauroalfieri.it/elettronica/esp8266-arduino-comandi-at.html
+
+
+
+****** VEDI QUESTI ALTRI LINK:
+https://www.youtube.com/watch?v=7vDJhlBkzEw
+(non usa le resistenze ma un 3.3V Linear Voltage Regulator (LD1117) che forse ho..?)
+
+https://www.youtube.com/watch?v=M5CYBHzMejo&list=FLOLPERtM-BguI3-11Hoi3yg&index=2&t=717s
+(questo video usa però dei convertitori di tensione...unico motivo per cui può essere utile è che si interfaccia con Blynk: ma direttamente con l'ESP o tramite Arduino?)
+
+https://create.arduino.cc/projecthub/jeffpar0721/add-wifi-to-arduino-uno-663b9e
+
+A quanto apre le RESISTENZE sono importanti per controllare il voltaggio e non bruciare l'ESP.
+...
+l'avrò già bruciato??
+
+Nel caso si voglia aggiornare il firmaware dell'ESP, cioè flashare, seguire la guida seguente anche se mi pare complicato e non ho capito perchè dovrei farlo:
+https://cordobo.com/2300-flash-esp8266-01-with-arduino-uno/
+
+Un'altra guida che collega dierttamente l'ESP ad Arduino UNO è questa, ma ATTENZIONE! Pare usare i 5V senza alcuna precauzione. Difatti i pin Rx/Tx su Arduino hanno dei livelli logici a 5V che potrebbero bruciare l'ESP. Quindi considera di fare un circuito "misto" tra i link sopracitati con le resistenze, e questo:
+https://medium.com/@cgrant/using-the-esp8266-wifi-module-with-arduino-uno-publishing-to-thingspeak-99fc77122e82
+
+
+Dunque ricapitolando:
+- si può dialogare DIRETTAMENTE con l'ESP sfruttando i pin Tx/Rx di Arduino UNO, che lavorano a 5V mentre invece l'ESP lavora a 3.3V (mi pare). In questo caso nell'IDE bisogna scegliere il modulo ESP8266 come board oppure niente in quanto NON CARICHIAMO nessun sketch ma dialogheremo con l'ESP direttamente col monitor seriale. Vedi il link seguente ma cerca di aggiungere qualche resistenza per sicurezza:
+https://create.arduino.cc/projecthub/PatelDarshil/how-to-communicate-with-esp8266-via-arduino-uno-f6e92f
+Il codice seguente invece connette ESP a Blynk, ma saltando Arduino Uno: inserire anche qui le resistenze e cercare di capire come usare comunque gli sketh di Arduino:
+https://create.arduino.cc/projecthub/adithya-tg/control-arduino-uno-using-esp8266-wifi-module-and-blynk-app-504494?ref=similar&ref_id=50039&offset=1
+Questo link è simile al precedente ma aggiunge una guida su come flshare il modulo ESP: se la tua versione è già >= a Sdk1.0.0 v0.22 lascia perdere:
+https://create.arduino.cc/projecthub/nolan-mathews/connect-to-blynk-using-esp8266-as-arduino-uno-wifi-shield-m1-46a453
+
+- si può dialogare con l'ESP tramite Arduino Uno usando altri pin, sfruittando così il codice e la logica di Arduino
+
+
+PROVARE a vedere se dopo aver connesso l'ESP viene creata una rete WIFI!
+-->vedi link precedente https://create.arduino.cc/projecthub/jeffpar0721/add-wifi-to-arduino-uno-663b9e
+
+
+
+Alcune note nei commenti degli utenti:
+1. when setting up the esp8266 in the boardmanager there are two generic esp8266 one with 512 kb drive and one with a mb drive. Choose the rigth one. 2. The crystal frequency was set to 26 board it needed to be set to 40 to work.
+
+Ok, if you get ERROR when typing the command, you need to type this one first:
+AT+CWMODE?
+AT+CWMODE=3
+By setting that mode you will be able to see the list of SSID available:
+AT+CWLAP
+And to connect:
+AT+CWJAP=”ssid”,”password”
+
