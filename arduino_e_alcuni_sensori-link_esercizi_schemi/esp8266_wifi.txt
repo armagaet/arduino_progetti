@@ -43,6 +43,10 @@ SEGUI QUESTA PISTA cercando degli sketch di esempio più recenti, forse è quest
 
 Il PIN di RESET del modulo va collegato a MASSA solo quando si vuole resettare il modulo! Altrimenti mi sembra di capire che debba essere scollegato... Oppure collegato ad un pin digitale per resettare il modulo a comando, da codice.
 
+...per importare correttamente la libreria "ESP8266_Lib.h" occorre scaricre lo zip di blynk da:
+https://github.com/blynkkk/blynk-library/releases
+recuperare la cartella "BlynkESP8266_Lib" e metterla sotto "C:\Users\Lavinia\Documents\Arduino\libraries"
+
 
 ***************** ALCUNE NOTE sul modulo
 Pare che il modulo lavori sì a 3.3V ma che Arduino non sia in grado di fornire la corrente necessaria al modulo ESP8266 per lavorare correttamnte (200mA a fronte dei 40-50mA max forniti da Arduino).
